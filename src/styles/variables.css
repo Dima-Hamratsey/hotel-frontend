@@ -1,0 +1,53 @@
+/* Дизайн-токени: палітра «глибокий синій + тепле золото», типографіка, відступи. */
+:root {
+  --navy-900: #0b1426;
+  --navy-800: #111d35;
+  --navy-700: #14213d;
+  --navy-600: #1f2f52;
+  --navy-500: #2c4170;
+  --navy-100: #e6eaf2;
+
+  --gold-600: #a8832f;
+  --gold-500: #c9a24b;
+  --gold-400: #d8b76a;
+  --gold-200: #efdcae;
+  --gold-100: #f8efd9;
+
+  --cream: #f8f5ef;
+  --surface: #ffffff;
+  --surface-muted: #f3f0e9;
+  --border: #e4ded2;
+  --border-strong: #cfc6b4;
+
+  --text: #1b2333;
+  --text-muted: #5f6878;
+  --text-soft: #8a91a0;
+  --text-inverse: #f6f3ec;
+
+  --success: #2f8f5b;
+  --success-bg: #e3f4ea;
+  --info: #2c6db5;
+  --info-bg: #e3eefa;
+  --warning: #b7791f;
+  --warning-bg: #fbf0dc;
+  --danger: #c0392b;
+  --danger-bg: #fbe7e4;
+  --neutral-bg: #eceef2;
+
+  --font-display: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+  --font-body: 'Manrope', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(11, 20, 38, 0.06), 0 1px 3px rgba(11, 20, 38, 0.05);
+  --shadow: 0 6px 18px rgba(11, 20, 38, 0.08);
+  --shadow-lg: 0 18px 50px rgba(11, 20, 38, 0.18);
+
+  --container: 1200px;
+  --header-h: 72px;
+  --sidebar-w: 248px;
+  --transition: 180ms ease;
+}
