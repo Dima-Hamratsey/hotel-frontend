@@ -1,0 +1,92 @@
+/* Сторінки входу та реєстрації. */
+
+.auth-page {
+  min-height: calc(100vh - var(--header-h) - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 20px;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(201, 162, 75, 0.14), transparent 45%),
+    radial-gradient(ellipse at 85% 80%, rgba(31, 47, 82, 0.12), transparent 50%),
+    var(--cream);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 36px 36px 28px;
+}
+
+.auth-card__brand {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.auth-card__title {
+  text-align: center;
+  font-size: 2.1rem;
+  margin-bottom: 4px;
+}
+
+.auth-card__subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-card__footer {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.auth-card__footer a {
+  font-weight: 700;
+}
+
+.auth-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--gold-100);
+  font-size: 0.82rem;
+  color: #6b5320;
+}
+
+.link-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: var(--navy-600);
+  text-decoration: underline dotted;
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  color: var(--gold-600);
+}
+
+@media (max-width: 520px) {
+  .auth-card {
+    padding: 28px 20px 22px;
+  }
+}
