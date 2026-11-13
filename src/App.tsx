@@ -1,4 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
+import { ProtectedRoute } from './components/RouteGuards';
+import { CabinetPage } from './pages/cabinet/CabinetPage';
 import { PublicLayout } from './components/layout/PublicLayout';
 import { LoginPage, RegisterPage } from './pages/public/AuthPages';
 import { CatalogPage } from './pages/public/CatalogPage';
@@ -16,6 +18,14 @@ export function App() {
         <Route path="rooms/:id" element={<RoomPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
+        <Route
+          path="cabinet"
+          element={
+            <ProtectedRoute>
+              <CabinetPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="services" element={<ServicesPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
