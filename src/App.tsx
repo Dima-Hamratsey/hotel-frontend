@@ -5,6 +5,7 @@ import { AdminRoute, ProtectedRoute } from './components/RouteGuards';
 import { AmenitiesPage } from './pages/admin/AmenitiesPage';
 import { CategoriesPage } from './pages/admin/CategoriesPage';
 import { DashboardPage } from './pages/admin/DashboardPage';
+import { RoomsAdminPage } from './pages/admin/RoomsAdminPage';
 import { ServicesAdminPage } from './pages/admin/ServicesAdminPage';
 import { CabinetPage } from './pages/cabinet/CabinetPage';
 import { LoginPage, RegisterPage } from './pages/public/AuthPages';
@@ -44,6 +45,7 @@ export function App() {
         }
       >
         <Route index element={<DashboardPage />} />
+        <Route path="rooms" element={<RoomsAdminPage />} />
         <Route path="categories" element={<CategoriesPage />} />
         <Route path="amenities" element={<AmenitiesPage />} />
         <Route path="services" element={<ServicesAdminPage />} />
