@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { HOTEL_SHORT_NAME } from '../../config';
 import { useAuth } from '../../hooks/useAuth';
+import { Loader } from '../Loader';
 import { Logo } from './Logo';
 
 interface NavItem {
@@ -115,7 +116,9 @@ export function AdminLayout() {
       </aside>
 
       <main className="admin-main">
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   );
