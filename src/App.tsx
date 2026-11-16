@@ -6,8 +6,10 @@ import { AmenitiesPage } from './pages/admin/AmenitiesPage';
 import { BookingsAdminPage } from './pages/admin/BookingsAdminPage';
 import { CategoriesPage } from './pages/admin/CategoriesPage';
 import { DashboardPage } from './pages/admin/DashboardPage';
+import { ReportsPage } from './pages/admin/ReportsPage';
 import { RoomsAdminPage } from './pages/admin/RoomsAdminPage';
 import { ServicesAdminPage } from './pages/admin/ServicesAdminPage';
+import { SettingsPage } from './pages/admin/SettingsPage';
 import { UsersAdminPage } from './pages/admin/UsersAdminPage';
 import { CabinetPage } from './pages/cabinet/CabinetPage';
 import { LoginPage, RegisterPage } from './pages/public/AuthPages';
@@ -47,12 +49,14 @@ export function App() {
         }
       >
         <Route index element={<DashboardPage />} />
+        <Route path="reports" element={<ReportsPage />} />
         <Route path="bookings" element={<BookingsAdminPage />} />
         <Route path="users" element={<UsersAdminPage />} />
         <Route path="rooms" element={<RoomsAdminPage />} />
         <Route path="categories" element={<CategoriesPage />} />
         <Route path="amenities" element={<AmenitiesPage />} />
         <Route path="services" element={<ServicesAdminPage />} />
+        <Route path="settings" element={<SettingsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
