@@ -14,6 +14,9 @@ import { PriceBreakdown } from '../PriceBreakdown';
 import { LoyaltyBadge } from '../StatusBadge';
 import { ServicePicker, type ServiceSelection } from './ServicePicker';
 
+/** Обмеження бекенду на тривалість одного бронювання. */
+const MAX_NIGHTS = 90;
+
 interface BookingPanelProps {
   room: RoomOut;
   services: ServiceOut[];
@@ -45,6 +48,7 @@ export function BookingPanel({ room, services, busy, checkIn, checkOut, guests, 
     if (!checkIn || !checkOut) return 'Оберіть дати заїзду та виїзду';
     if (checkIn < today) return 'Дата заїзду не може бути в минулому';
     if (nights <= 0) return 'Дата виїзду має бути пізніше дати заїзду';
+    if (nights > MAX_NIGHTS) return `Максимальна тривалість бронювання — ${MAX_NIGHTS} ночей`;
     if (guests < 1) return 'Вкажіть кількість гостей';
     if (guests > room.capacity) return `Номер розрахований максимум на ${room.capacity} гостей`;
     const overlap = findOverlap({ check_in: checkIn, check_out: checkOut }, busy);
@@ -189,7 +193,7 @@ export function BookingPanel({ room, services, busy, checkIn, checkOut, guests, 
 
       <button
         className="btn btn--primary btn--lg btn--block"
-        disabled={Boolean(validationError) || submitting || !quote.data || quote.pending}
+        disabled={Boolean(validationError) || Boolean(quote.error) || submitting || !quote.data || quote.pending}
         onClick={handleBook}
       >
         {submitting ? 'Бронюємо…' : user ? 'Забронювати' : 'Увійти та забронювати'}

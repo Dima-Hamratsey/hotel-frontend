@@ -1,11 +1,11 @@
-/** Логотип: гори під вечірньою зорею. */
+/** Логотип: зоря над морськими хвилями. */
 export function Logo({ size = 40 }: { size?: number }) {
   return (
     <svg className="logo" width={size} height={size} viewBox="0 0 64 64" aria-hidden>
       <rect width="64" height="64" rx="14" fill="#14213d" />
-      <path d="M8 48 L25 24 L33 35 L40 27 L56 48 Z" fill="#c9a24b" />
-      <path d="M25 24 L29.5 30.5 L25 29 L21 31 Z" fill="#f3e2b3" />
-      <circle cx="46" cy="16" r="5" fill="#f3e2b3" />
+      <path d="M32 9 L35.2 19.8 L46 23 L35.2 26.2 L32 37 L28.8 26.2 L18 23 L28.8 19.8 Z" fill="#f3e2b3" />
+      <path d="M8 44 Q14 39 20 44 T32 44 T44 44 T56 44" stroke="#c9a24b" strokeWidth="3.5" fill="none" strokeLinecap="round" />
+      <path d="M8 52 Q14 47 20 52 T32 52 T44 52 T56 52" stroke="#c9a24b" strokeWidth="3.5" fill="none" strokeLinecap="round" opacity="0.6" />
     </svg>
   );
 }
