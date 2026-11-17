@@ -9,7 +9,7 @@ import { BookingPanel } from '../../components/room/BookingPanel';
 import { RoomGallery } from '../../components/room/RoomGallery';
 import { useAsync } from '../../hooks/useAsync';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
-import { addDays, todayISO } from '../../utils/dates';
+import { addDays, firstFreeRange, todayISO } from '../../utils/dates';
 import { formatDate, formatMoney, guestsLabel } from '../../utils/format';
 
 export function RoomPage() {
@@ -24,7 +24,9 @@ export function RoomPage() {
   useDocumentTitle(room ? room.title : 'Номер');
 
   const today = todayISO();
-  const checkIn = searchParams.get('check_in') ?? addDays(today, 1);
+  // Без дат в URL пропонуємо найближче вільне вікно на 2 ночі (коли відомі зайняті дати).
+  const defaults = firstFreeRange(addDays(today, 1), 2, busyState.data ?? []);
+  const checkIn = searchParams.get('check_in') ?? defaults.check_in;
   const checkOut = searchParams.get('check_out') ?? addDays(checkIn, 2);
   const guests = Math.max(1, Number(searchParams.get('guests')) || 1);
 
@@ -134,7 +136,12 @@ export function RoomPage() {
           </div>
 
           <aside className="room-page__aside">
-            {room.is_active ? (
+            {!room.is_active ? (
+              <div className="alert alert--warning">Номер тимчасово недоступний для бронювання.</div>
+            ) : !busyState.data && !busyState.error ? (
+              // Чекаємо зайняті дати, інакше розрахунок піде з конфліктними датами.
+              <Loader label="Перевіряємо доступність…" />
+            ) : (
               <BookingPanel
                 room={room}
                 services={servicesState.data ?? []}
@@ -144,8 +151,6 @@ export function RoomPage() {
                 guests={Math.min(guests, room.capacity)}
                 onParamsChange={updateParams}
               />
-            ) : (
-              <div className="alert alert--warning">Номер тимчасово недоступний для бронювання.</div>
             )}
           </aside>
         </div>

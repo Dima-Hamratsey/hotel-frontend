@@ -37,6 +37,22 @@ export function findOverlap(range: BusyRange, busy: BusyRange[]): BusyRange | un
   return busy.find((b) => rangesOverlap(range, b));
 }
 
+/**
+ * Перше вільне вікно з `nights` ночей, що починається не раніше `from`.
+ * Використовується для дат за замовчуванням на сторінці номера.
+ */
+export function firstFreeRange(from: ISODate, nights: number, busy: BusyRange[]): BusyRange {
+  let checkIn = from;
+  // Кожна ітерація зсуває заїзд на кінець конфліктного бронювання, тож цикл скінченний.
+  for (let i = 0; i <= busy.length; i += 1) {
+    const candidate = { check_in: checkIn, check_out: addDays(checkIn, nights) };
+    const overlap = findOverlap(candidate, busy);
+    if (!overlap) return candidate;
+    checkIn = overlap.check_out > checkIn ? overlap.check_out : addDays(checkIn, 1);
+  }
+  return { check_in: checkIn, check_out: addDays(checkIn, nights) };
+}
+
 export function startOfMonthISO(date = new Date()): ISODate {
   return toISODate(new Date(date.getFullYear(), date.getMonth(), 1));
 }
