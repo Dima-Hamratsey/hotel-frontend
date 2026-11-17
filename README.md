@@ -1,54 +1,113 @@
-# React + TypeScript + Vite
+# Готель «Зоряна Гавань» — фронтенд
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Клієнтська частина курсового проєкту **«Система управління готелем»**: односторінковий веб-застосунок
+(React + TypeScript), що працює з REST API бекенду на FastAPI (`hotel-backend`).
 
-Currently, two official plugins are available:
+Застосунок дозволяє гостям переглядати каталог номерів, бронювати їх онлайн із додатковими послугами
+та живим розрахунком вартості, керувати бронюваннями в особистому кабінеті й накопичувати бонуси.
+Адміністрація отримує окрему панель зі звітами, керуванням номерним фондом, бронюваннями,
+користувачами та налаштуваннями ціноутворення.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Можливості
 
-## Expanding the ESLint configuration
+### Публічна частина та кабінет клієнта
+- **Головна** — hero-блок зі швидким пошуком (дати + гості → каталог), категорії номерів, перелік послуг.
+- **Каталог номерів** — фільтри за категорією, ціною, кількістю гостей, зручностями та датами
+  (показуються лише вільні номери), сортування; стан фільтрів зберігається в URL.
+- **Сторінка номера** — фотогалерея, опис, зручності, список зайнятих дат із підсвічуванням конфліктів,
+  панель бронювання: дати, гості, додаткові послуги (харчування / трансфер / SPA) з кількістю,
+  списання бонусів, **живий розрахунок** вартості (`POST /api/bookings/quote`) з деталізацією знижок
+  та бонусів, що будуть нараховані.
+- **Вхід / реєстрація** з поверненням на сторінку, з якої користувач прийшов.
+- **Особистий кабінет** — профіль, бонусний баланс, рівень лояльності (Базовий / Срібний / Золотий),
+  історія бонусних операцій, історія бронювань зі статусами, деталізацією вартості та діями
+  «Скасувати» і «Продовжити» (доступність дій визначає бекенд через `allowed_actions`).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Адмін-панель (`/admin`, лише роль `admin`)
+- **Дашборд** — ключові показники на сьогодні.
+- **Звіти** — завантаженість (графік по днях + таблиця по номерах), дохід по місяцях,
+  популярність категорій (кругова діаграма + частки), постійні клієнти.
+- **Номери** — CRUD, зручності, активність, керування фото (завантаження з попереднім переглядом, видалення);
+  якщо номер має бронювання — пропонується деактивація замість видалення.
+- **Категорії, Зручності, Послуги** — CRUD-таблиці з модальними формами.
+- **Бронювання** — фільтри за статусом і періодом, дії «Заселити / Завершити / Скасувати».
+- **Користувачі** — статистика бронювань і витрат, бонуси, зміна ролі.
+- **Налаштування** — бонусний відсоток, ліміт оплати бонусами, націнка вихідного дня,
+  знижка за тривале проживання, пороги та знижки рівнів лояльності.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Технології
+- React 18, TypeScript (strict), Vite
+- react-router-dom 6 (вкладені маршрути, захищені маршрути, lazy-завантаження адмінки)
+- recharts — графіки звітів
+- Власна дизайн-система на CSS-змінних (без UI-бібліотек), адаптивна верстка до мобільних
+- ESLint (typescript-eslint, react-hooks)
+
+## Запуск
+
+Потрібен Node.js 18+ (перевірено на 22). Бекенд має працювати на `http://localhost:8000`
+(див. README репозиторію `hotel-backend`).
+
+```bash
+npm install
+cp .env.example .env.local   # за потреби змініть адресу API
+npm run dev                  # http://localhost:5173
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Інші команди:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm run build     # перевірка типів + production-збірка в dist/
+npm run preview   # перегляд production-збірки
+npm run lint      # ESLint
 ```
+
+### Змінні середовища
+
+| Змінна | Опис | За замовчуванням |
+|---|---|---|
+| `VITE_API_URL` | Базова адреса бекенду (без `/api`) | `http://localhost:8000` |
+
+Шляхи до фото, які повертає API (`/static/uploads/...`), автоматично доповнюються цією адресою.
+
+## Тестові акаунти
+
+| Роль | Email | Пароль |
+|---|---|---|
+| Адміністратор | `admin@hotel.ua` | `admin123` |
+| Клієнт | `client@hotel.ua` | `client123` |
+
+## Структура проєкту
+
+```
+src/
+  api/            HTTP-клієнт (fetch + Bearer-токен, помилки → ApiError з полем detail),
+                  модулі ресурсів: auth, catalog, bookings, admin, reports; types.ts — схеми контракту
+  context/        AuthProvider (токен у localStorage, профіль через /api/auth/me), ToastProvider
+  hooks/          useAsync, useAsyncAction, useQuote (debounce), useDebounce, useAuth, useToast…
+  components/     спільні компоненти: Modal, ConfirmDialog, StatusBadge, RoomCard, RoomPhoto,
+                  RoomFiltersPanel, DateRange, PriceBreakdown, Loader, EmptyState, ErrorState,
+                  AsyncContent, RouteGuards
+    layout/       PublicLayout, AdminLayout, Header, Footer, Logo
+    room/         BookingPanel, ServicePicker, RoomGallery
+    booking/      BookingCard, BookingDetails, ExtendBookingModal
+    admin/        DataTable, CrudManager (узагальнений CRUD-екран), RoomFormModal, PhotoManagerModal, StatTile
+    reports/      картки звітів із графіками
+  pages/
+    public/       Головна, Каталог, Номер, Послуги, Вхід/Реєстрація, 404
+    cabinet/      Особистий кабінет
+    admin/        Дашборд, Звіти, Номери, Категорії, Зручності, Послуги, Бронювання, Користувачі, Налаштування
+  styles/         CSS-змінні (дизайн-токени), базові стилі, стилі сторінок
+  utils/          форматування грошей/дат (uk-UA), розрахунок ночей, підписи enum-значень, фільтри
+```
+
+### Архітектурні рішення
+- **Шар API відокремлений від UI**: компоненти не викликають `fetch` напряму, лише типізовані модулі ресурсів.
+  Типи в `api/types.ts` один в один відповідають схемам API-контракту.
+- **Facade / Adapter** — `http.ts` приховує деталі `fetch`, токена, JSON та формату помилок FastAPI.
+- **Provider (Context)** — стан автентифікації та сповіщень доступний через хуки `useAuth` / `useToast`;
+  відповідь 401 автоматично завершує сесію.
+- **Template Method на рівні UI** — `CrudManager` реалізує спільний сценарій «таблиця → форма → збереження →
+  видалення», а сторінки категорій, зручностей і послуг задають лише колонки та поля форми.
+- **Бізнес-правила на бекенді**: доступні дії з бронюванням (`allowed_actions`) і розрахунок вартості
+  (`/quote`) не дублюються на клієнті — UI лише відображає їх; клієнтська валідація дат лише покращує UX.
+- Адмін-панель винесена в окремі lazy-чанки, тому клієнтська частина завантажується швидше.
