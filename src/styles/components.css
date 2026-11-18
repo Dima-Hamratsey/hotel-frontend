@@ -621,7 +621,8 @@
 /* ---------- Stat tiles ---------- */
 .stat-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Ширші колонки: 6 плиток дашборду лягають рівно 2×3, а суми не переносяться. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 16px;
 }
 
@@ -651,6 +652,7 @@
   color: var(--navy-700);
   line-height: 1.1;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .stat__hint {
@@ -733,4 +735,27 @@
 .tabs__tab--active {
   color: var(--navy-700);
   border-bottom-color: var(--gold-500);
+}
+
+/* Пагінація таблиць */
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px 4px 0;
+}
+
+.pager__info {
+  margin-right: auto;
+  color: var(--text-muted, #6b7280);
+  font-size: 0.875rem;
+}
+
+.pager__page {
+  min-width: 56px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
 }
