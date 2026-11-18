@@ -26,3 +26,8 @@ dist-ssr
 # Env
 .env.local
 .env.*.local
+
+# Playwright
+e2e/screenshots/
+e2e/.results/
+playwright-report/
