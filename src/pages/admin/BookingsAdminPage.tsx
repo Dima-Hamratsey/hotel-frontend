@@ -215,7 +215,7 @@ export function BookingsAdminPage() {
       >
         {() =>
           rows.length ? (
-            <DataTable rows={rows} columns={columns} rowKey={(b) => b.id} rowClassName={(b) => (b.status === 'cancelled' ? 'row-muted' : '')} />
+            <DataTable pageSize={25} rows={rows} columns={columns} rowKey={(b) => b.id} rowClassName={(b) => (b.status === 'cancelled' ? 'row-muted' : '')} />
           ) : (
             <EmptyState icon="🔍" title="Нічого не знайдено за запитом" />
           )

@@ -64,7 +64,7 @@ export function RegularClientsCard() {
       >
         {(rows) => {
           const ranked = rows.map((r, i) => ({ ...r, rank: i + 1 }));
-          return <DataTable rows={ranked} columns={COLUMNS} rowKey={(r) => r.user_id} />;
+          return <DataTable pageSize={15} rows={ranked} columns={COLUMNS} rowKey={(r) => r.user_id} />;
         }}
       </AsyncContent>
     </section>

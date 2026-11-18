@@ -136,7 +136,7 @@ export function UsersAdminPage() {
       >
         {() =>
           rows.length ? (
-            <DataTable rows={rows} columns={columns} rowKey={(u) => u.id} />
+            <DataTable pageSize={25} rows={rows} columns={columns} rowKey={(u) => u.id} />
           ) : (
             <EmptyState icon="🔍" title="Нікого не знайдено" />
           )
