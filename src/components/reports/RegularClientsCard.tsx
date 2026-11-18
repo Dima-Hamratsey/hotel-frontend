@@ -60,7 +60,7 @@ export function RegularClientsCard() {
         error={report.error}
         onRetry={report.reload}
         isEmpty={(d) => d.length === 0}
-        empty={<EmptyState icon="🤝" title="Немає клієнтів за цим критерієм" text="Спробуйте зменшити мінімальну кількість бронювань." />}
+        empty={<EmptyState title="Немає клієнтів за цим критерієм" text="Спробуйте зменшити мінімальну кількість бронювань." />}
       >
         {(rows) => {
           const ranked = rows.map((r, i) => ({ ...r, rank: i + 1 }));

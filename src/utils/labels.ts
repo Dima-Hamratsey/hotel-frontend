@@ -42,12 +42,6 @@ export const SERVICE_TYPE_LABELS: Record<ServiceType, string> = {
   other: 'Інше',
 };
 
-export const SERVICE_TYPE_ICONS: Record<ServiceType, string> = {
-  meal: '🍽️',
-  transfer: '🚘',
-  spa: '💆',
-  other: '✨',
-};
 
 export const PRICING_TYPE_LABELS: Record<PricingType, string> = {
   per_stay: 'за перебування',

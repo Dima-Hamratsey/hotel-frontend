@@ -10,26 +10,23 @@ import { addDays, todayISO } from '../../utils/dates';
 import { formatMoney } from '../../utils/format';
 import { filtersToSearch } from '../../utils/roomFilters';
 
-const CATEGORY_VISUALS: Record<string, { icon: string; tagline: string }> = {
-  economy: { icon: '🌲', tagline: 'Практичний комфорт для мандрівників' },
-  standard: { icon: '🏔️', tagline: 'Простір і краєвиди для відпочинку' },
-  lux: { icon: '👑', tagline: 'Апартаменти преміум-класу' },
+const CATEGORY_VISUALS: Record<string, { tagline: string }> = {
+  economy: { tagline: 'Практичний комфорт для мандрівників' },
+  standard: { tagline: 'Простір і краєвиди для відпочинку' },
+  lux: { tagline: 'Апартаменти преміум-класу' },
 };
 
 const FEATURES = [
-  { icon: '🌊', title: 'Панорамні краєвиди', text: 'Вид на море чи вечірнє місто з балконів номерів категорії «Стандарт» і вище.' },
-  { icon: '💆', title: 'SPA та релакс', text: 'Басейн, сауна, масажі та ароматерапія — для повного перезавантаження.' },
-  { icon: '🍽️', title: 'Авторська кухня', text: 'Сніданки зі свіжих локальних продуктів і вечері від шеф-кухаря з морепродуктами.' },
-  { icon: '🎁', title: 'Бонусна програма', text: 'Отримуйте бонуси за кожне проживання та знижки для постійних гостей.' },
+  { title: 'Панорамні краєвиди', text: 'Вид на море чи вечірнє місто з балконів номерів категорії «Стандарт» і вище.' },
+  { title: 'SPA та релакс', text: 'Басейн, сауна, масажі та ароматерапія — для повного перезавантаження.' },
+  { title: 'Авторська кухня', text: 'Сніданки зі свіжих локальних продуктів і вечері від шеф-кухаря з морепродуктами.' },
+  { title: 'Бонусна програма', text: 'Отримуйте бонуси за кожне проживання та знижки для постійних гостей.' },
 ];
 
 function CategoryCard({ category }: { category: CategoryOut }) {
-  const visual = CATEGORY_VISUALS[category.code] ?? { icon: '🛏️', tagline: '' };
+  const visual = CATEGORY_VISUALS[category.code] ?? { tagline: '' };
   return (
     <Link to={`/rooms?category_id=${category.id}`} className={`category-card category-card--${category.code}`}>
-      <span className="category-card__icon" aria-hidden>
-        {visual.icon}
-      </span>
       <span className="category-card__tagline">{visual.tagline}</span>
       <h3 className="category-card__name">{category.name}</h3>
       <p className="category-card__desc">{category.description}</p>
@@ -152,9 +149,6 @@ export function HomePage() {
           <div className="feature-grid">
             {FEATURES.map((f) => (
               <div key={f.title} className="feature">
-                <span className="feature__icon" aria-hidden>
-                  {f.icon}
-                </span>
                 <h4>{f.title}</h4>
                 <p>{f.text}</p>
               </div>

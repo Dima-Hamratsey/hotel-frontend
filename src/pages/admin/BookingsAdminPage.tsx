@@ -211,13 +211,13 @@ export function BookingsAdminPage() {
         error={bookings.error}
         onRetry={bookings.reload}
         isEmpty={(d) => d.length === 0}
-        empty={<EmptyState icon="🗓️" title="Бронювань не знайдено" text="Змініть фільтри або період." />}
+        empty={<EmptyState title="Бронювань не знайдено" text="Змініть фільтри або період." />}
       >
         {() =>
           rows.length ? (
             <DataTable pageSize={25} rows={rows} columns={columns} rowKey={(b) => b.id} rowClassName={(b) => (b.status === 'cancelled' ? 'row-muted' : '')} />
           ) : (
-            <EmptyState icon="🔍" title="Нічого не знайдено за запитом" />
+            <EmptyState title="Нічого не знайдено за запитом" />
           )
         }
       </AsyncContent>

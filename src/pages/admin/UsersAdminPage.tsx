@@ -132,13 +132,13 @@ export function UsersAdminPage() {
         error={users.error}
         onRetry={users.reload}
         isEmpty={(d) => d.length === 0}
-        empty={<EmptyState icon="👥" title="Користувачів ще немає" />}
+        empty={<EmptyState title="Користувачів ще немає" />}
       >
         {() =>
           rows.length ? (
             <DataTable pageSize={25} rows={rows} columns={columns} rowKey={(u) => u.id} />
           ) : (
-            <EmptyState icon="🔍" title="Нікого не знайдено" />
+            <EmptyState title="Нікого не знайдено" />
           )
         }
       </AsyncContent>

@@ -149,7 +149,6 @@ export function CabinetPage() {
               isEmpty={(d) => d.length === 0}
               empty={
                 <EmptyState
-                  icon="🧳"
                   title="У вас ще немає бронювань"
                   text="Оберіть номер у каталозі — це займе кілька хвилин."
                   action={
@@ -162,7 +161,7 @@ export function CabinetPage() {
             >
               {() =>
                 filtered.length === 0 ? (
-                  <EmptyState icon="🔍" title="Немає бронювань із таким статусом" />
+                  <EmptyState title="Немає бронювань із таким статусом" />
                 ) : (
                   <div className="booking-list">
                     {filtered.map((b) => (
@@ -182,7 +181,6 @@ export function CabinetPage() {
                 <h3 className="card__title">Історія бонусних операцій</h3>
                 {data.transactions.length === 0 ? (
                   <EmptyState
-                    icon="🎁"
                     title="Операцій ще немає"
                     text="Бонуси нараховуються після завершення проживання — відсоток від суми бронювання."
                   />

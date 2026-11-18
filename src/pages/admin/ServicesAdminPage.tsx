@@ -4,7 +4,7 @@ import { CrudManager } from '../../components/admin/CrudManager';
 import { ActiveBadge } from '../../components/StatusBadge';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import { formatMoney } from '../../utils/format';
-import { PRICING_TYPE_LABELS, SERVICE_TYPE_ICONS, SERVICE_TYPE_LABELS } from '../../utils/labels';
+import { PRICING_TYPE_LABELS, SERVICE_TYPE_LABELS } from '../../utils/labels';
 
 const EMPTY: ServiceIn = {
   code: '',
@@ -30,7 +30,6 @@ export function ServicesAdminPage() {
       title="Додаткові послуги"
       subtitle="Харчування, трансфер, SPA. Неактивні послуги не показуються клієнтам при бронюванні."
       entityAccusative="послугу"
-      emptyIcon="✨"
       emptyForm={EMPTY}
       toForm={({ code, name, description, type, price, pricing_type, is_active }) => ({
         code,
@@ -65,7 +64,7 @@ export function ServicesAdminPage() {
           header: 'Тип',
           render: (s) => (
             <span className="tag">
-              {SERVICE_TYPE_ICONS[s.type]} {SERVICE_TYPE_LABELS[s.type]}
+              {SERVICE_TYPE_LABELS[s.type]}
             </span>
           ),
         },

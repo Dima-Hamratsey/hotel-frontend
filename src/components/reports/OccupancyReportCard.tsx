@@ -70,7 +70,7 @@ export function OccupancyReportCard() {
       <AsyncContent data={report.data} loading={report.loading} error={report.error} onRetry={report.reload}>
         {(data) =>
           data.by_day.length === 0 ? (
-            <EmptyState icon="📉" title="Немає даних за період" />
+            <EmptyState title="Немає даних за період" />
           ) : (
             <>
               <div className="chart-box" role="img" aria-label="Графік завантаженості по днях">

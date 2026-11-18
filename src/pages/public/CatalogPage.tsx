@@ -81,7 +81,6 @@ export function CatalogPage() {
               isEmpty={(d) => d.length === 0}
               empty={
                 <EmptyState
-                  icon="🛏️"
                   title="Номерів не знайдено"
                   text="Спробуйте змінити дати або послабити фільтри."
                   action={

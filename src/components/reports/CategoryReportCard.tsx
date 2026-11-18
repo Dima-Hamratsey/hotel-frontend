@@ -49,7 +49,7 @@ export function CategoryReportCard() {
         error={report.error}
         onRetry={report.reload}
         isEmpty={(d) => d.length === 0 || d.every((c) => c.bookings === 0)}
-        empty={<EmptyState icon="🏷️" title="Бронювань за період немає" />}
+        empty={<EmptyState title="Бронювань за період немає" />}
       >
         {(data) => {
           const ids = data.map((c) => c.category_id);

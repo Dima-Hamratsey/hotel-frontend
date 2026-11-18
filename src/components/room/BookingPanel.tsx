@@ -180,7 +180,7 @@ export function BookingPanel({ room, services, busy, checkIn, checkOut, guests, 
             <PriceBreakdown lines={quote.data.breakdown} total={quote.data.total} />
             {quote.data.bonus_to_earn > 0 && (
               <div className="earn-note">
-                🎁 Після проживання ви отримаєте <strong>{formatNumber(quote.data.bonus_to_earn, 2)}</strong> бонусів
+                 Після проживання ви отримаєте <strong>{formatNumber(quote.data.bonus_to_earn, 2)}</strong> бонусів
               </div>
             )}
           </div>

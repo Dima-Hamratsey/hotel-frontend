@@ -27,7 +27,6 @@ interface CrudManagerProps<TOut extends { id: number }, TIn> {
   renderForm: (props: FormRenderProps<TIn>) => ReactNode;
   validate?: (value: TIn) => string | null;
   describe: (item: TOut) => string;
-  emptyIcon?: string;
   modalSize?: 'sm' | 'md' | 'lg';
 }
 
@@ -47,7 +46,6 @@ export function CrudManager<TOut extends { id: number }, TIn>({
   renderForm,
   validate,
   describe,
-  emptyIcon = '🗂️',
   modalSize = 'md',
 }: CrudManagerProps<TOut, TIn>) {
   const toast = useToast();
@@ -167,7 +165,6 @@ export function CrudManager<TOut extends { id: number }, TIn>({
         isEmpty={(d) => d.length === 0}
         empty={
           <EmptyState
-            icon={emptyIcon}
             title="Записів ще немає"
             action={
               <button className="btn btn--dark" onClick={openCreate}>

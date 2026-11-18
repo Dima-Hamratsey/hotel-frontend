@@ -1,6 +1,6 @@
 import type { ServiceOut } from '../../api/types';
 import { formatMoney } from '../../utils/format';
-import { PRICING_TYPE_LABELS, SERVICE_TYPE_ICONS, SERVICE_TYPE_LABELS } from '../../utils/labels';
+import { PRICING_TYPE_LABELS, SERVICE_TYPE_LABELS } from '../../utils/labels';
 import { groupServicesByType } from '../../utils/services';
 
 export type ServiceSelection = Record<number, number>; // service_id → quantity
@@ -31,7 +31,7 @@ export function ServicePicker({ services, value, onChange }: ServicePickerProps)
       {groupServicesByType(services).map(([type, items]) => (
         <fieldset key={type} className="service-picker__group">
           <legend>
-            <span aria-hidden>{SERVICE_TYPE_ICONS[type]}</span> {SERVICE_TYPE_LABELS[type]}
+            {SERVICE_TYPE_LABELS[type]}
           </legend>
           {items.map((s) => {
             const qty = value[s.id];

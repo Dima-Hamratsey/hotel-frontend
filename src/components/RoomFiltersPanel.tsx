@@ -1,6 +1,5 @@
 import type { AmenityOut, CategoryOut, RoomFilters, RoomSort } from '../api/types';
 import { todayISO } from '../utils/dates';
-import { amenityIcon } from '../utils/amenityIcon';
 import { SORT_LABELS } from '../utils/labels';
 import { DateRange } from './DateRange';
 
@@ -136,7 +135,6 @@ export function RoomFiltersPanel({ value, onChange, onReset, categories, ameniti
                   checked={selectedAmenities.includes(a.id)}
                   onChange={() => toggleAmenity(a.id)}
                 />
-                <span aria-hidden>{amenityIcon(a.icon)}</span>
                 {a.name}
               </label>
             ))}

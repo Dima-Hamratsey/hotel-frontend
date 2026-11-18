@@ -398,13 +398,12 @@
 }
 
 .amenity-icons li {
-  width: 32px;
-  height: 32px;
-  display: grid;
-  place-items: center;
+  padding: 6px 10px;
   border-radius: 8px;
   background: var(--surface-muted);
-  font-size: 1rem;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  white-space: nowrap;
   cursor: default;
 }
 

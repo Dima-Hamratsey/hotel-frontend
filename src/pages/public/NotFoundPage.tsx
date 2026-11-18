@@ -8,7 +8,6 @@ export function NotFoundPage() {
     <div className="page">
       <div className="container">
         <EmptyState
-          icon="🧭"
           title="Сторінку не знайдено"
           text="Можливо, посилання застаріло або сторінку було переміщено."
           action={

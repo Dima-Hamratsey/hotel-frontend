@@ -215,7 +215,6 @@ export function RoomsAdminPage() {
         isEmpty={(d) => d.length === 0}
         empty={
           <EmptyState
-            icon="🛏️"
             title="Номерів ще немає"
             action={
               <button className="btn btn--dark" onClick={openCreate}>
@@ -229,7 +228,7 @@ export function RoomsAdminPage() {
           filtered.length ? (
             <DataTable rows={filtered} columns={columns} rowKey={(r) => r.id} rowClassName={(r) => (r.is_active ? '' : 'row-muted')} />
           ) : (
-            <EmptyState icon="🔍" title="Нічого не знайдено" text="Змініть пошуковий запит або категорію." />
+            <EmptyState title="Нічого не знайдено" text="Змініть пошуковий запит або категорію." />
           )
         }
       </AsyncContent>

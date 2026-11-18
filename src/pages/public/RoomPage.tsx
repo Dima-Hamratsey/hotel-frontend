@@ -44,7 +44,7 @@ export function RoomPage() {
   if (!Number.isInteger(roomId) || roomId <= 0) {
     return (
       <div className="page container">
-        <EmptyState icon="🔎" title="Номер не знайдено" />
+        <EmptyState title="Номер не знайдено" />
       </div>
     );
   }

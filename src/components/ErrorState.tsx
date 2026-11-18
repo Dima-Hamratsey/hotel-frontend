@@ -6,9 +6,6 @@ interface ErrorStateProps {
 export function ErrorState({ message, onRetry }: ErrorStateProps) {
   return (
     <div className="error-state" role="alert">
-      <div className="error-state__icon" aria-hidden>
-        ⚠️
-      </div>
       <div className="error-state__body">
         <strong>Не вдалося завантажити дані</strong>
         <p className="error-state__msg">{message}</p>

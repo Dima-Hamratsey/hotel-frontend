@@ -2,7 +2,6 @@ import { useState, type FormEvent } from 'react';
 import { adminApi } from '../../api/admin';
 import { errorMessage } from '../../api/http';
 import type { AmenityOut, CategoryOut, RoomIn, RoomOut } from '../../api/types';
-import { amenityIcon } from '../../utils/amenityIcon';
 import { Modal } from '../Modal';
 
 interface RoomFormModalProps {
@@ -185,7 +184,6 @@ function RoomForm({ room, categories, amenities, onClose, onSaved }: RoomFormMod
               {amenities.map((a) => (
                 <label key={a.id} className="checkbox">
                   <input type="checkbox" checked={form.amenity_ids.includes(a.id)} onChange={() => toggleAmenity(a.id)} />
-                  <span aria-hidden>{amenityIcon(a.icon)}</span>
                   {a.name}
                 </label>
               ))}

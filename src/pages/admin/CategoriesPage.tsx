@@ -14,7 +14,6 @@ export function CategoriesPage() {
       title="Категорії номерів"
       subtitle="Економ, стандарт, люкс та інші класи номерів. Базова ціна — орієнтир «від» на головній сторінці."
       entityAccusative="категорію"
-      emptyIcon="🏷️"
       emptyForm={EMPTY}
       toForm={({ code, name, description, base_price }) => ({ code, name, description, base_price })}
       describe={(c) => c.name}

@@ -10,10 +10,10 @@ import { formatLongDate, formatMoney, formatNumber, formatPercent } from '../../
 import { todayISO } from '../../utils/dates';
 
 const QUICK_LINKS = [
-  { to: '/admin/bookings', icon: '🗓️', title: 'Бронювання', text: 'Заселення, виїзд, скасування' },
-  { to: '/admin/reports', icon: '📈', title: 'Звіти', text: 'Завантаженість і фінанси' },
-  { to: '/admin/rooms', icon: '🛏️', title: 'Номери', text: 'Ціни, фото, доступність' },
-  { to: '/admin/settings', icon: '⚙️', title: 'Налаштування', text: 'Бонуси, знижки, націнки' },
+  { to: '/admin/bookings', title: 'Бронювання', text: 'Заселення, виїзд, скасування' },
+  { to: '/admin/reports', title: 'Звіти', text: 'Завантаженість і фінанси' },
+  { to: '/admin/rooms', title: 'Номери', text: 'Ціни, фото, доступність' },
+  { to: '/admin/settings', title: 'Налаштування', text: 'Бонуси, знижки, націнки' },
 ];
 
 export function DashboardPage() {
@@ -54,9 +54,6 @@ export function DashboardPage() {
       <div className="dashboard-quick">
         {QUICK_LINKS.map((l) => (
           <Link key={l.to} to={l.to} className="quick-link">
-            <span className="quick-link__icon" aria-hidden>
-              {l.icon}
-            </span>
             <div>
               <strong>{l.title}</strong>
               <span>{l.text}</span>

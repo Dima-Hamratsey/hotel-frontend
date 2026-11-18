@@ -8,7 +8,6 @@ import { Logo } from './Logo';
 interface NavItem {
   to: string;
   label: string;
-  icon: string;
   end?: boolean;
 }
 
@@ -16,29 +15,29 @@ const NAV_GROUPS: Array<{ title: string; items: NavItem[] }> = [
   {
     title: 'Аналітика',
     items: [
-      { to: '/admin', label: 'Дашборд', icon: '◧', end: true },
-      { to: '/admin/reports', label: 'Звіти', icon: '📈' },
+      { to: '/admin', label: 'Дашборд', end: true },
+      { to: '/admin/reports', label: 'Звіти' },
     ],
   },
   {
     title: 'Операції',
     items: [
-      { to: '/admin/bookings', label: 'Бронювання', icon: '🗓️' },
-      { to: '/admin/users', label: 'Користувачі', icon: '👥' },
+      { to: '/admin/bookings', label: 'Бронювання' },
+      { to: '/admin/users', label: 'Користувачі' },
     ],
   },
   {
     title: 'Каталог',
     items: [
-      { to: '/admin/rooms', label: 'Номери', icon: '🛏️' },
-      { to: '/admin/categories', label: 'Категорії', icon: '🏷️' },
-      { to: '/admin/amenities', label: 'Зручності', icon: '📶' },
-      { to: '/admin/services', label: 'Послуги', icon: '✨' },
+      { to: '/admin/rooms', label: 'Номери' },
+      { to: '/admin/categories', label: 'Категорії' },
+      { to: '/admin/amenities', label: 'Зручності' },
+      { to: '/admin/services', label: 'Послуги' },
     ],
   },
   {
     title: 'Система',
-    items: [{ to: '/admin/settings', label: 'Налаштування', icon: '⚙️' }],
+    items: [{ to: '/admin/settings', label: 'Налаштування' }],
   },
 ];
 
@@ -81,9 +80,6 @@ export function AdminLayout() {
             <nav className="admin-sidebar__nav">
               {group.items.map((item) => (
                 <NavLink key={item.to} to={item.to} end={item.end} className="admin-sidebar__link">
-                  <span className="admin-sidebar__icon" aria-hidden>
-                    {item.icon}
-                  </span>
                   {item.label}
                 </NavLink>
               ))}

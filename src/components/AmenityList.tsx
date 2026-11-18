@@ -1,9 +1,8 @@
 import type { AmenityOut } from '../api/types';
-import { amenityIcon } from '../utils/amenityIcon';
 
 interface AmenityListProps {
   amenities: AmenityOut[];
-  /** Компактний режим: лише іконки з підказками. */
+  /** Компактний режим: короткий список назв. */
   compact?: boolean;
   max?: number;
 }
@@ -17,8 +16,7 @@ export function AmenityList({ amenities, compact, max }: AmenityListProps) {
       <ul className="amenity-icons" aria-label="Зручності">
         {shown.map((a) => (
           <li key={a.id} title={a.name}>
-            <span aria-hidden>{amenityIcon(a.icon)}</span>
-            <span className="sr-only">{a.name}</span>
+            <span>{a.name}</span>
           </li>
         ))}
         {rest > 0 && <li className="amenity-icons__more">+{rest}</li>}
@@ -30,9 +28,6 @@ export function AmenityList({ amenities, compact, max }: AmenityListProps) {
     <ul className="amenity-list">
       {shown.map((a) => (
         <li key={a.id}>
-          <span className="amenity-list__icon" aria-hidden>
-            {amenityIcon(a.icon)}
-          </span>
           {a.name}
         </li>
       ))}
